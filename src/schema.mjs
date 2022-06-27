@@ -1,0 +1,96 @@
+import { gql } from 'apollo-server'
+
+export default gql`
+  type Query {
+    movie(id: ID!): Movie!
+    searchMovies(
+      query: String!
+      page: Int!
+      include_adult: Boolean
+      region: String
+      year: Int
+      primary_release_year: Int
+    ): PageSearchMovie
+  }
+
+  type PageSearchMovie {
+    page: Int!
+    results: [SearchMovie!]!
+    total_results: Int!
+    total_pages: Int!
+  }
+
+  type SearchMovie {
+    poster_path: String
+    adult: Boolean
+    overview: String
+    release_date: String
+    genres: [Genre!]!
+    id: ID
+    original_title: String
+    original_language: String
+    title: String!
+    backdrop_path: String
+    popularity: Float
+    vote_count: Int
+    videos: [Video]
+    vote_average: Float
+  }
+
+  type Movie {
+    adult: Boolean!
+    backdrop_path: String
+    budget: Int!
+    genre: [Genre!]!
+    homepage: String
+    id: ID!
+    imdb_id: String
+    original_language: String!
+    original_title: String!
+    overview: String
+    popularity: Float!
+    poster_path: String
+    release_date: String!
+    revenu: Int
+    runtime: Int
+    status: String!
+    tagline: String
+    title: String!
+    videos: [Video!]!
+    vote_average: Float!
+    vote_count: Int!
+    watchProvider(country: String): WatchProvider
+  }
+
+  type Genre {
+    id: ID!
+    name: String!
+  }
+
+  type Provider {
+    display_priority: Int!
+    logo_path: String!
+    provider_id: Int!
+    provider_name: String!
+  }
+
+  type WatchProvider {
+    link: String
+    flatrate: [Provider]!
+    rent: [Provider]!
+    buy: [Provider]!
+  }
+
+  type Video {
+    id: String
+    iso_639_1: String
+    iso_3166_1: String
+    name: String
+    key: String
+    site: String
+    size: Int
+    type: String
+    official: Boolean
+    published_at: String
+  }
+`

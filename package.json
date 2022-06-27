@@ -1,0 +1,25 @@
+{
+  "name": "tmdb-apollo",
+  "version": "1.0.0",
+  "description": "The movie database (TMDB) under apollo/graphql",
+  "main": "app.mjs",
+  "scripts": {
+    "start": "nodemon src/app.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadeen/tmdb-apollo.git"
+  },
+  "author": "jadeen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jadeen/tmdb-apollo/issues"
+  },
+  "homepage": "https://github.com/jadeen/tmdb-apollo#readme",
+  "dependencies": {
+    "apollo-datasource-rest": "^3.6.0",
+    "apollo-server": "^3.8.1",
+    "nodemon": "^2.0.16"
+  }
+}
