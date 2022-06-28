@@ -1,3 +1,5 @@
+import './open-telemetry.mjs'
+
 import { ApolloServer, gql } from 'apollo-server'
 import { buildSubgraphSchema } from '@apollo/subgraph'
 import { readFileSync } from 'fs'
