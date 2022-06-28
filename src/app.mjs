@@ -1,14 +1,18 @@
-import { ApolloServer } from 'apollo-server'
+import { ApolloServer, gql } from 'apollo-server'
+import { buildSubgraphSchema } from '@apollo/subgraph'
+import { readFileSync } from 'fs'
 
-import typeDefs from './schema.mjs'
 import resolvers from './resolvers.mjs'
 
 import MovieAPI from './datasources/movie-api.mjs'
 import SearchAPI from './datasources/search-api.mjs'
 
+const typeDefs = gql(
+  readFileSync('./src/schema.graphql', { encoding: 'utf-8' })
+)
+
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema: buildSubgraphSchema({ typeDefs, resolvers }),
   dataSources: () => ({
     movieAPI: new MovieAPI('cbb0cd6e9ffc96b93927a29961c9421c', 'en-US'),
     searchAPI: new SearchAPI('cbb0cd6e9ffc96b93927a29961c9421c', 'en-US')
